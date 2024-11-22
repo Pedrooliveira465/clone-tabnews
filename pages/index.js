@@ -1,5 +1,5 @@
 function Home() {
-    return <h1>Olá, mundo</h1>
+    return <h1>Treina mais newba, não aguento mais te carregar!</h1>
 }
 
 export default Home;
