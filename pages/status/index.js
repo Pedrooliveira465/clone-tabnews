@@ -1,6 +1,6 @@
 import useSWR from "swr";
 
-async function fetchAPI(key){
+async function fetchAPI(key) {
   const response = await fetch(key);
   const responseBody = await response.json();
   return responseBody;
@@ -9,27 +9,27 @@ async function fetchAPI(key){
 export default function StatusPage() {
   return (
     <>
-        <h1>Status</h1>
-        <UpdatedAt />
-        <DatabaseStatus />
+      <h1>Status</h1>
+      <UpdatedAt />
+      <DatabaseStatus />
     </>
   );
 }
 
 function UpdatedAt() {
   const { isLoading, data } = useSWR("/api/v1/status", fetchAPI, {
-      refreshInterval: 2000,
-    });
+    refreshInterval: 2000,
+  });
 
-    console.log(data);
+  console.log(data);
 
-    let updatedAtText = "Carregando...";
+  let updatedAtText = "Carregando...";
 
-    if (!isLoading && data) {
-      updatedAtText = new Date(data.updated_at).toLocaleString("pt-BR");
-    }
+  if (!isLoading && data) {
+    updatedAtText = new Date(data.updated_at).toLocaleString("pt-BR");
+  }
 
-    return <div>Última atualização: {updatedAtText}</div>;
+  return <div>Última atualização: {updatedAtText}</div>;
 }
 
 function DatabaseStatus() {
@@ -59,5 +59,4 @@ function DatabaseStatus() {
       <div>{databaseStatusInformation}</div>
     </>
   );
-
 }
